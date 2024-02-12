@@ -2,34 +2,12 @@
     "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
     "contentVersion": "1.0.0.0",
     "parameters": {
-        "extensions_enablevmAccess_username": {
-            "type": "SecureString"
-        },
-        "extensions_enablevmAccess_password": {
-            "type": "SecureString"
-        },
-        "extensions_enablevmAccess_ssh_key": {
-            "type": "SecureString"
-        },
-        "extensions_enablevmAccess_reset_ssh": {
-            "type": "SecureString"
-        },
-        "extensions_enablevmAccess_remove_user": {
-            "type": "SecureString"
-        },
-        "extensions_enablevmAccess_expiration": {
-            "type": "SecureString"
-        },
         "virtualMachines_jenkinsvm1_name": {
             "defaultValue": "jenkinsvm1",
             "type": "String"
         },
-        "sshPublicKeys_jenkinsvm1_key_name": {
-            "defaultValue": "jenkinsvm1_key",
-            "type": "String"
-        },
-        "networkInterfaces_jenkinsvm118_name": {
-            "defaultValue": "jenkinsvm118",
+        "networkInterfaces_jenkinsvm1889_name": {
+            "defaultValue": "jenkinsvm1889",
             "type": "String"
         },
         "publicIPAddresses_jenkinsvm1_ip_name": {
@@ -47,15 +25,6 @@
     },
     "variables": {},
     "resources": [
-        {
-            "type": "Microsoft.Compute/sshPublicKeys",
-            "apiVersion": "2023-03-01",
-            "name": "[parameters('sshPublicKeys_jenkinsvm1_key_name')]",
-            "location": "eastus",
-            "properties": {
-                "publicKey": "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQCsHDg29ZgeaxOn9LCPjOEVKRP3FBlczF13ABwIdvOLZallGFKlZsYy+CAylyynKAMBNSpz1vPmRrWpjZdC9Pfx0h7GPO21aT1C+Ynb4bH6MwvQ1R1MPng9JNwUfeF1H0jwkhsR25v6lAQM90xfP5lVsB4xO1+jEV9zN5/ZpHvv0nYbYMCzP/6VUW9UDsRLGTQRgUSCYpAwbHolNn8cK01TLMdDpI+mJjOAT5rfD9v68HPfkqSL1C2AmfHt+neVcw2a21F2rhv2hqqLwoLIDbmkkBhzzKGufgucb/He/SiLG9UCEj+gcqaLJc1LiVWepK1gv/ZUVh4R3gUoYskbCksfiHjRFZFtc8JrjjFvcAEmSBC/UlB1is6gOfqRmXPsBvELPclN0uMo0L7DXPZt3i5Lbcf8PeWjFhE9arnp5ZBJLKT/dSr1pHiBtadWTfEKBScSVrs+3526bPGNZZV++E5reC4j9WyqP79EqwVGoc0FUgUK0BHAlw69QOs7INfxLKk= generated-by-azure"
-            }
-        },
         {
             "type": "Microsoft.Network/networkSecurityGroups",
             "apiVersion": "2023-06-01",
@@ -152,7 +121,7 @@
                 "tier": "Regional"
             },
             "properties": {
-                "ipAddress": "20.127.121.151",
+                "ipAddress": "52.170.208.108",
                 "publicIPAddressVersion": "IPv4",
                 "publicIPAllocationMethod": "Static",
                 "idleTimeoutInMinutes": 4,
@@ -193,7 +162,7 @@
             "name": "[parameters('virtualMachines_jenkinsvm1_name')]",
             "location": "eastus",
             "dependsOn": [
-                "[resourceId('Microsoft.Network/networkInterfaces', parameters('networkInterfaces_jenkinsvm118_name'))]"
+                "[resourceId('Microsoft.Network/networkInterfaces', parameters('networkInterfaces_jenkinsvm1889_name'))]"
             ],
             "plan": {
                 "name": "jenkins",
@@ -216,12 +185,12 @@
                     },
                     "osDisk": {
                         "osType": "Linux",
-                        "name": "[concat(parameters('virtualMachines_jenkinsvm1_name'), '_OsDisk_1_216d7926ad3c481eb0c0be5648fe37ce')]",
+                        "name": "[concat(parameters('virtualMachines_jenkinsvm1_name'), '_OsDisk_1_898ffdaa075a466097c6ce4b8379d129')]",
                         "createOption": "FromImage",
                         "caching": "ReadWrite",
                         "managedDisk": {
                             "storageAccountType": "Premium_LRS",
-                            "id": "[resourceId('Microsoft.Compute/disks', concat(parameters('virtualMachines_jenkinsvm1_name'), '_OsDisk_1_216d7926ad3c481eb0c0be5648fe37ce'))]"
+                            "id": "[resourceId('Microsoft.Compute/disks', concat(parameters('virtualMachines_jenkinsvm1_name'), '_OsDisk_1_898ffdaa075a466097c6ce4b8379d129'))]"
                         },
                         "deleteOption": "Delete",
                         "diskSizeGB": 30
@@ -237,7 +206,7 @@
                             "publicKeys": [
                                 {
                                     "path": "/home/azureuser/.ssh/authorized_keys",
-                                    "keyData": "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQCsHDg29ZgeaxOn9LCPjOEVKRP3FBlczF13ABwIdvOLZallGFKlZsYy+CAylyynKAMBNSpz1vPmRrWpjZdC9Pfx0h7GPO21aT1C+Ynb4bH6MwvQ1R1MPng9JNwUfeF1H0jwkhsR25v6lAQM90xfP5lVsB4xO1+jEV9zN5/ZpHvv0nYbYMCzP/6VUW9UDsRLGTQRgUSCYpAwbHolNn8cK01TLMdDpI+mJjOAT5rfD9v68HPfkqSL1C2AmfHt+neVcw2a21F2rhv2hqqLwoLIDbmkkBhzzKGufgucb/He/SiLG9UCEj+gcqaLJc1LiVWepK1gv/ZUVh4R3gUoYskbCksfiHjRFZFtc8JrjjFvcAEmSBC/UlB1is6gOfqRmXPsBvELPclN0uMo0L7DXPZt3i5Lbcf8PeWjFhE9arnp5ZBJLKT/dSr1pHiBtadWTfEKBScSVrs+3526bPGNZZV++E5reC4j9WyqP79EqwVGoc0FUgUK0BHAlw69QOs7INfxLKk= generated-by-azure"
+                                    "keyData": "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQDFqAlFoWurB/9E1gFdgOVUMdZgk43dsSMjSA1SVuS9j7ePl6PNtaNKzJrKNngRN2vcAeAaJqG5mXHNPM91M3l0YnNGZZhKURB0esgsWZ7sBqcDpD2U9MXdg67zU5FUO450CQw6WiVRMuIxGa1NsY9sOwhWpndsYKmngKwKcF/SyYQK3iEgrpUrEP+gv33UsLGVQ8ksH7wO2Y/x7BdsVooZFGE30r2/4GbD+KfY/o5mDRX7SYKsM86kJFZw98ZhqhuxLhnyVvzyjb6XIiR3V0OcnWQdIoLw7nxK2GeiY9qdgUDkphDEYEIx+PtlPgqes4EnpCJ+19bCnEV/b6Jf4C5ng5XVRk448NwfnGfiDdTQQhxxV3kymYaivnL329EEgTNmh8Z4XXrdC5k+zVrg/SUshBX3PI0p57xG1Ll7+rtRVQLhzpHBcPxNOgLNLPLhAg/c3k6OWUw3pwUXzTweTvYy8POEyWL06iQaU5wm6Fmw5Wt+VQ/Qz8kjPErjjYqgqP8= root@LAPTOP-OJCSKH2M"
                                 }
                             ]
                         },
@@ -255,7 +224,7 @@
                 "networkProfile": {
                     "networkInterfaces": [
                         {
-                            "id": "[resourceId('Microsoft.Network/networkInterfaces', parameters('networkInterfaces_jenkinsvm118_name'))]",
+                            "id": "[resourceId('Microsoft.Network/networkInterfaces', parameters('networkInterfaces_jenkinsvm1889_name'))]",
                             "properties": {
                                 "deleteOption": "Detach"
                             }
@@ -266,30 +235,6 @@
                     "bootDiagnostics": {
                         "enabled": true
                     }
-                }
-            }
-        },
-        {
-            "type": "Microsoft.Compute/virtualMachines/extensions",
-            "apiVersion": "2023-03-01",
-            "name": "[concat(parameters('virtualMachines_jenkinsvm1_name'), '/enablevmAccess')]",
-            "location": "eastus",
-            "dependsOn": [
-                "[resourceId('Microsoft.Compute/virtualMachines', parameters('virtualMachines_jenkinsvm1_name'))]"
-            ],
-            "properties": {
-                "autoUpgradeMinorVersion": true,
-                "publisher": "Microsoft.OSTCExtensions",
-                "type": "VMAccessForLinux",
-                "typeHandlerVersion": "1.5",
-                "settings": {},
-                "protectedSettings": {
-                    "username": "[parameters('extensions_enablevmAccess_username')]",
-                    "password": "[parameters('extensions_enablevmAccess_password')]",
-                    "ssh_key": "[parameters('extensions_enablevmAccess_ssh_key')]",
-                    "reset_ssh": "[parameters('extensions_enablevmAccess_reset_ssh')]",
-                    "remove_user": "[parameters('extensions_enablevmAccess_remove_user')]",
-                    "expiration": "[parameters('extensions_enablevmAccess_expiration')]"
                 }
             }
         },
@@ -398,7 +343,7 @@
         {
             "type": "Microsoft.Network/networkInterfaces",
             "apiVersion": "2023-06-01",
-            "name": "[parameters('networkInterfaces_jenkinsvm118_name')]",
+            "name": "[parameters('networkInterfaces_jenkinsvm1889_name')]",
             "location": "eastus",
             "dependsOn": [
                 "[resourceId('Microsoft.Network/publicIPAddresses', parameters('publicIPAddresses_jenkinsvm1_ip_name'))]",
@@ -410,8 +355,8 @@
                 "ipConfigurations": [
                     {
                         "name": "ipconfig1",
-                        "id": "[concat(resourceId('Microsoft.Network/networkInterfaces', parameters('networkInterfaces_jenkinsvm118_name')), '/ipConfigurations/ipconfig1')]",
-                        "etag": "W/\"7fbf233e-939a-4883-9948-a5a12ad342e9\"",
+                        "id": "[concat(resourceId('Microsoft.Network/networkInterfaces', parameters('networkInterfaces_jenkinsvm1889_name')), '/ipConfigurations/ipconfig1')]",
+                        "etag": "W/\"fef704aa-17df-453e-aec3-e52c56f3cbf9\"",
                         "type": "Microsoft.Network/networkInterfaces/ipConfigurations",
                         "properties": {
                             "provisioningState": "Succeeded",

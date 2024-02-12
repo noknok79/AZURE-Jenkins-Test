@@ -1,34 +1,8 @@
-@secure()
-param extensions_enablevmAccess_username string
-
-@secure()
-param extensions_enablevmAccess_password string
-
-@secure()
-param extensions_enablevmAccess_ssh_key string
-
-@secure()
-param extensions_enablevmAccess_reset_ssh string
-
-@secure()
-param extensions_enablevmAccess_remove_user string
-
-@secure()
-param extensions_enablevmAccess_expiration string
 param virtualMachines_jenkinsvm1_name string = 'jenkinsvm1'
-param sshPublicKeys_jenkinsvm1_key_name string = 'jenkinsvm1_key'
-param networkInterfaces_jenkinsvm118_name string = 'jenkinsvm118'
+param networkInterfaces_jenkinsvm1889_name string = 'jenkinsvm1889'
 param publicIPAddresses_jenkinsvm1_ip_name string = 'jenkinsvm1-ip'
 param virtualNetworks_jenkinsvm1_vnet_name string = 'jenkinsvm1-vnet'
 param networkSecurityGroups_jenkinsvm1_nsg_name string = 'jenkinsvm1-nsg'
-
-resource sshPublicKeys_jenkinsvm1_key_name_resource 'Microsoft.Compute/sshPublicKeys@2023-03-01' = {
-  name: sshPublicKeys_jenkinsvm1_key_name
-  location: 'eastus'
-  properties: {
-    publicKey: 'ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQCsHDg29ZgeaxOn9LCPjOEVKRP3FBlczF13ABwIdvOLZallGFKlZsYy+CAylyynKAMBNSpz1vPmRrWpjZdC9Pfx0h7GPO21aT1C+Ynb4bH6MwvQ1R1MPng9JNwUfeF1H0jwkhsR25v6lAQM90xfP5lVsB4xO1+jEV9zN5/ZpHvv0nYbYMCzP/6VUW9UDsRLGTQRgUSCYpAwbHolNn8cK01TLMdDpI+mJjOAT5rfD9v68HPfkqSL1C2AmfHt+neVcw2a21F2rhv2hqqLwoLIDbmkkBhzzKGufgucb/He/SiLG9UCEj+gcqaLJc1LiVWepK1gv/ZUVh4R3gUoYskbCksfiHjRFZFtc8JrjjFvcAEmSBC/UlB1is6gOfqRmXPsBvELPclN0uMo0L7DXPZt3i5Lbcf8PeWjFhE9arnp5ZBJLKT/dSr1pHiBtadWTfEKBScSVrs+3526bPGNZZV++E5reC4j9WyqP79EqwVGoc0FUgUK0BHAlw69QOs7INfxLKk= generated-by-azure'
-  }
-}
 
 resource networkSecurityGroups_jenkinsvm1_nsg_name_resource 'Microsoft.Network/networkSecurityGroups@2023-06-01' = {
   name: networkSecurityGroups_jenkinsvm1_nsg_name
@@ -37,7 +11,7 @@ resource networkSecurityGroups_jenkinsvm1_nsg_name_resource 'Microsoft.Network/n
     securityRules: [
       {
         name: 'HTTP'
-        id: networkSecurityGroups_jenkinsvm1_nsg_name_HTTP.id
+        //id: networkSecurityGroups_jenkinsvm1_nsg_name_HTTP.id
         type: 'Microsoft.Network/networkSecurityGroups/securityRules'
         properties: {
           protocol: 'TCP'
@@ -56,7 +30,7 @@ resource networkSecurityGroups_jenkinsvm1_nsg_name_resource 'Microsoft.Network/n
       }
       {
         name: 'HTTPS'
-        id: networkSecurityGroups_jenkinsvm1_nsg_name_HTTPS.id
+        //id: networkSecurityGroups_jenkinsvm1_nsg_name_HTTPS.id
         type: 'Microsoft.Network/networkSecurityGroups/securityRules'
         properties: {
           protocol: 'TCP'
@@ -75,7 +49,7 @@ resource networkSecurityGroups_jenkinsvm1_nsg_name_resource 'Microsoft.Network/n
       }
       {
         name: 'Jenkins'
-        id: networkSecurityGroups_jenkinsvm1_nsg_name_Jenkins.id
+        //id: networkSecurityGroups_jenkinsvm1_nsg_name_Jenkins.id
         type: 'Microsoft.Network/networkSecurityGroups/securityRules'
         properties: {
           protocol: 'TCP'
@@ -94,7 +68,7 @@ resource networkSecurityGroups_jenkinsvm1_nsg_name_resource 'Microsoft.Network/n
       }
       {
         name: 'default-allow-ssh'
-        id: networkSecurityGroups_jenkinsvm1_nsg_name_default_allow_ssh.id
+        //id: networkSecurityGroups_jenkinsvm1_nsg_name_default_allow_ssh.id
         type: 'Microsoft.Network/networkSecurityGroups/securityRules'
         properties: {
           protocol: 'TCP'
@@ -123,7 +97,7 @@ resource publicIPAddresses_jenkinsvm1_ip_name_resource 'Microsoft.Network/public
     tier: 'Regional'
   }
   properties: {
-    ipAddress: '20.127.121.151'
+    ipAddress: '52.170.208.108'
     publicIPAddressVersion: 'IPv4'
     publicIPAllocationMethod: 'Static'
     idleTimeoutInMinutes: 4
@@ -143,7 +117,7 @@ resource virtualNetworks_jenkinsvm1_vnet_name_resource 'Microsoft.Network/virtua
     subnets: [
       {
         name: 'default'
-        id: virtualNetworks_jenkinsvm1_vnet_name_default.id
+        //id: virtualNetworks_jenkinsvm1_vnet_name_default.id
         properties: {
           addressPrefix: '10.0.0.0/24'
           delegations: []
@@ -182,12 +156,12 @@ resource virtualMachines_jenkinsvm1_name_resource 'Microsoft.Compute/virtualMach
       }
       osDisk: {
         osType: 'Linux'
-        name: '${virtualMachines_jenkinsvm1_name}_OsDisk_1_216d7926ad3c481eb0c0be5648fe37ce'
+        name: '${virtualMachines_jenkinsvm1_name}_OsDisk_1_898ffdaa075a466097c6ce4b8379d129'
         createOption: 'FromImage'
         caching: 'ReadWrite'
         managedDisk: {
           storageAccountType: 'Premium_LRS'
-          id: resourceId('Microsoft.Compute/disks', '${virtualMachines_jenkinsvm1_name}_OsDisk_1_216d7926ad3c481eb0c0be5648fe37ce')
+          id: resourceId('Microsoft.Compute/disks', '${virtualMachines_jenkinsvm1_name}_OsDisk_1_898ffdaa075a466097c6ce4b8379d129')
         }
         deleteOption: 'Delete'
         diskSizeGB: 30
@@ -221,7 +195,7 @@ resource virtualMachines_jenkinsvm1_name_resource 'Microsoft.Compute/virtualMach
     networkProfile: {
       networkInterfaces: [
         {
-          id: networkInterfaces_jenkinsvm118_name_resource.id
+          //id: networkInterfaces_jenkinsvm1889_name_resource.id
           properties: {
             deleteOption: 'Detach'
           }
@@ -236,31 +210,31 @@ resource virtualMachines_jenkinsvm1_name_resource 'Microsoft.Compute/virtualMach
   }
 }
 
-resource virtualMachines_jenkinsvm1_name_enablevmAccess 'Microsoft.Compute/virtualMachines/extensions@2023-03-01' = {
+resource customScriptExtensions_jenkinsvm1_name_resource 'Microsoft.Compute/virtualMachines/extensions@2021-04-01' = {
   parent: virtualMachines_jenkinsvm1_name_resource
-  name: 'enablevmAccess'
-  location: 'eastus'
+  name: 'customScript'
   properties: {
+    publisher: 'Microsoft.Azure.Extensions'
+    type: 'CustomScript'
+    typeHandlerVersion: '2.1'
     autoUpgradeMinorVersion: true
-    publisher: 'Microsoft.OSTCExtensions'
-    type: 'VMAccessForLinux'
-    typeHandlerVersion: '1.5'
     settings: {
-      commandToExecute: 'apt update -y; apt upgrade'
+      fileUris: [
+        'https://raw.githubusercontent.com/Azure/azure-quickstart-templates/master/201-vm-custom-script-windows/azuredeploy.json'
+      ]
+      commandToExecute: 'apt update -y; apt upgrade -y'
     }
-    protectedSettings: {
-      username: extensions_enablevmAccess_username
-      password: extensions_enablevmAccess_password
-      ssh_key: extensions_enablevmAccess_ssh_key
-      reset_ssh: extensions_enablevmAccess_reset_ssh
-      remove_user: extensions_enablevmAccess_remove_user
-      expiration: extensions_enablevmAccess_expiration
-    }
+    protectedSettings: {}
   }
+  dependsOn: [
+    virtualMachines_jenkinsvm1_name_resource
+  ]
+  location: 'eastus'
 }
 
 resource networkSecurityGroups_jenkinsvm1_nsg_name_default_allow_ssh 'Microsoft.Network/networkSecurityGroups/securityRules@2023-06-01' = {
-  name: '${networkSecurityGroups_jenkinsvm1_nsg_name}/default-allow-ssh'
+  parent: networkSecurityGroups_jenkinsvm1_nsg_name_resource
+  name: 'default-allow-ssh'
   properties: {
     protocol: 'TCP'
     sourcePortRange: '*'
@@ -281,7 +255,8 @@ resource networkSecurityGroups_jenkinsvm1_nsg_name_default_allow_ssh 'Microsoft.
 }
 
 resource networkSecurityGroups_jenkinsvm1_nsg_name_HTTP 'Microsoft.Network/networkSecurityGroups/securityRules@2023-06-01' = {
-  name: '${networkSecurityGroups_jenkinsvm1_nsg_name}/HTTP'
+  parent: networkSecurityGroups_jenkinsvm1_nsg_name_resource
+  name: 'HTTP'
   properties: {
     protocol: 'TCP'
     sourcePortRange: '*'
@@ -302,7 +277,8 @@ resource networkSecurityGroups_jenkinsvm1_nsg_name_HTTP 'Microsoft.Network/netwo
 }
 
 resource networkSecurityGroups_jenkinsvm1_nsg_name_HTTPS 'Microsoft.Network/networkSecurityGroups/securityRules@2023-06-01' = {
-  name: '${networkSecurityGroups_jenkinsvm1_nsg_name}/HTTPS'
+  parent: networkSecurityGroups_jenkinsvm1_nsg_name_resource
+  name: 'HTTPS'
   properties: {
     protocol: 'TCP'
     sourcePortRange: '*'
@@ -323,7 +299,8 @@ resource networkSecurityGroups_jenkinsvm1_nsg_name_HTTPS 'Microsoft.Network/netw
 }
 
 resource networkSecurityGroups_jenkinsvm1_nsg_name_Jenkins 'Microsoft.Network/networkSecurityGroups/securityRules@2023-06-01' = {
-  name: '${networkSecurityGroups_jenkinsvm1_nsg_name}/Jenkins'
+  parent: networkSecurityGroups_jenkinsvm1_nsg_name_resource
+  name: 'Jenkins'
   properties: {
     protocol: 'TCP'
     sourcePortRange: '*'
@@ -344,7 +321,8 @@ resource networkSecurityGroups_jenkinsvm1_nsg_name_Jenkins 'Microsoft.Network/ne
 }
 
 resource virtualNetworks_jenkinsvm1_vnet_name_default 'Microsoft.Network/virtualNetworks/subnets@2023-06-01' = {
-  name: '${virtualNetworks_jenkinsvm1_vnet_name}/default'
+  parent: virtualNetworks_jenkinsvm1_vnet_name_resource
+  name: 'default'
   properties: {
     addressPrefix: '10.0.0.0/24'
     delegations: []
@@ -356,16 +334,16 @@ resource virtualNetworks_jenkinsvm1_vnet_name_default 'Microsoft.Network/virtual
   ]
 }
 
-resource networkInterfaces_jenkinsvm118_name_resource 'Microsoft.Network/networkInterfaces@2023-06-01' = {
-  name: networkInterfaces_jenkinsvm118_name
+resource networkInterfaces_jenkinsvm1889_name_resource 'Microsoft.Network/networkInterfaces@2023-06-01' = {
+  name: networkInterfaces_jenkinsvm1889_name
   location: 'eastus'
   kind: 'Regular'
   properties: {
     ipConfigurations: [
       {
         name: 'ipconfig1'
-        id: '${networkInterfaces_jenkinsvm118_name_resource.id}/ipConfigurations/ipconfig1'
-        etag: 'W/"7fbf233e-939a-4883-9948-a5a12ad342e9"'
+        //id: '${networkInterfaces_jenkinsvm1889_name_resource.id}/ipConfigurations/ipconfig1'
+        etag: 'W/"fef704aa-17df-453e-aec3-e52c56f3cbf9"'
         type: 'Microsoft.Network/networkInterfaces/ipConfigurations'
         properties: {
           provisioningState: 'Succeeded'
